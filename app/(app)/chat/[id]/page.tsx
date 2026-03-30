@@ -282,14 +282,14 @@ export default function ChatDetailPage() {
 
   if (loading || !conversation) {
     return (
-      <div className="h-screen flex items-center justify-center bg-transparent">
+      <div className="h-full min-h-[60vh] flex items-center justify-center bg-transparent">
         <div className="w-10 h-10 rounded-full border-4 border-rose-500 border-t-transparent animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="h-screen bg-transparent flex flex-col">
+    <div className="h-full min-h-0 bg-transparent flex flex-col">
       <header className="px-4 py-3 border-b border-white/10 dark:border-white/5 flex items-center gap-3 bg-transparent backdrop-blur-sm">
         <button onClick={() => router.push('/chat')} className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10">
           <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-200" />
@@ -379,22 +379,22 @@ export default function ChatDetailPage() {
         })}
       </main>
 
-      <form onSubmit={submit} className="p-3 border-t border-white/10 dark:border-white/5 bg-transparent backdrop-blur-sm">
+      <form onSubmit={submit} className="p-3 border-t border-white/10 dark:border-white/5 bg-transparent backdrop-blur-sm pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         {xpHint ? (
           <p className="text-[11px] mb-1 text-amber-500">No XP: {xpHint}</p>
         ) : null}
 
-        <div className="mb-2 flex flex-wrap gap-2">
+        <div className="mb-2 flex gap-2 overflow-x-auto no-scrollbar pb-1">
           <button
             type="button"
             disabled={!canEmoji || sending}
             onClick={() => setShowEmojiPicker((v) => !v)}
-            className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs disabled:opacity-40 inline-flex items-center gap-1"
+            className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs disabled:opacity-40 inline-flex items-center gap-1 flex-shrink-0"
           >
             <Smile className="w-3.5 h-3.5" /> Emoji
           </button>
 
-          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1">
+          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1 flex-shrink-0">
             <ImageIcon className="w-3.5 h-3.5" />
             <input
               type="file"
@@ -405,11 +405,11 @@ export default function ChatDetailPage() {
                 if (file) uploadAndSendMedia(file, 'image');
                 e.currentTarget.value = '';
               }}
-              className="text-[10px] w-[120px]"
+              className="text-[10px] w-20 sm:w-[120px]"
             />
           </div>
 
-          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1">
+          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1 flex-shrink-0">
             <ImageIcon className="w-3.5 h-3.5" />
             <input
               type="file"
@@ -420,11 +420,11 @@ export default function ChatDetailPage() {
                 if (file) uploadAndSendMedia(file, 'gif');
                 e.currentTarget.value = '';
               }}
-              className="text-[10px] w-[100px]"
+              className="text-[10px] w-16 sm:w-[100px]"
             />
           </div>
 
-          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1">
+          <div className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs inline-flex items-center gap-1 flex-shrink-0">
             <Video className="w-3.5 h-3.5" />
             <input
               type="file"
@@ -435,7 +435,7 @@ export default function ChatDetailPage() {
                 if (file) uploadAndSendMedia(file, 'video');
                 e.currentTarget.value = '';
               }}
-              className="text-[10px] w-[100px]"
+              className="text-[10px] w-16 sm:w-[100px]"
             />
           </div>
 
@@ -443,7 +443,7 @@ export default function ChatDetailPage() {
             type="button"
             disabled={!canVoiceCall || sending}
             onClick={() => sendTypedMessage('voice_note', 'Voice call request')}
-            className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs disabled:opacity-40 inline-flex items-center gap-1"
+            className="h-8 px-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs disabled:opacity-40 inline-flex items-center gap-1 flex-shrink-0"
           >
             <Phone className="w-3.5 h-3.5" /> Voice call
           </button>

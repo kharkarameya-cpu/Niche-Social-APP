@@ -161,7 +161,7 @@ function BottomNav() {
   });
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-black border-t border-gray-100 dark:border-gray-900 z-50">
+    <nav className="fixed bottom-0 left-0 w-full bg-transparent backdrop-blur-sm border-t border-white/10 dark:border-white/5 z-50">
       <div className="py-1 px-2 flex justify-center overflow-x-auto no-scrollbar">
         <Dock
           items={dockItems}
